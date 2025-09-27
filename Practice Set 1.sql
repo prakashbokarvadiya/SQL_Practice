@@ -25,7 +25,7 @@ select sum(salary) as totalsalary from emp;
 
 select department ,avg(salary) 
 from emp
- group by department;
+ group by department;  
  
  select department, avg(salary)
  from emp 
