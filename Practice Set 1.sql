@@ -4,7 +4,7 @@ create table emp (
 e_id int primary key ,
 e_name varchar(50),
 department varchar(20),
-salary int);
+salary int); 
 
 insert into emp values(1,"abhik","IT",30000);
 insert into emp values
