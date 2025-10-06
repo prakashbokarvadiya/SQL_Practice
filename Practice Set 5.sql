@@ -17,7 +17,7 @@ salary decimal(10,2)
 
 create table Courses(
 course_id int primary key auto_increment,
-couser_name varchar(50),
+course_name varchar(50),
 teacher_id int,
 foreign key (teacher_id) references teachers(teacher_id)
 );
@@ -88,7 +88,7 @@ where t.teacher_name='Mr. Sharma';
 -- 3. Get details of students older than 18.
 select * 
 from Students
-where age<18;
+where age>18;
 -- 4. Show all teachers in "Computer Science" department.
 select teacher_name
 from teachers t
@@ -201,14 +201,15 @@ from teachers
 group by department;
 
 -- 24. Count students per class, only show classes having more than 10 students.
-select class
-from students 
-group by class
-having count(class)>10;
+SELECT class,COUNT(*) AS total_students
+FROM students
+GROUP BY class
+HAVING COUNT(*) > 10;
+
 
 
 -- 25. Find teachers per department, only show departments with more than 5 teachers.
-select department
+select department,count(department)
 from teachers 
 group by department
 having count(department) >5;
@@ -356,12 +357,14 @@ select * from TeacherSalaryView;
 
 -- 45. Create a view CourseStatsView with course, total students enrolled.
 create or replace view CourseStatsView as
-select c.course_name,count(e.course_id)
+select c.course_name,count(e.course_id) as total_student
 from courses c
 join enrollments e on c.course_id=e.course_id
-group by c.course_name,e.course_id
+group by c.course_name
 ;
 select * from CourseStatsView;
+
+
 -- 46. Create a view CityWiseStudents showing city and count of students.
  Create  view CityWiseStudents as 
  select city,count(city)
