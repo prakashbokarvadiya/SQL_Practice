@@ -396,6 +396,19 @@ group by t.teacher_name;
 -- 50. Find city-wise total fees collected, order by highest to lowest.
 select s.city,sum(e.fees) as total_fees
 from students s
-join enrollments e
+join enrollments e on s.student_id=e.student_id
 group by s.city
 order by total_fees desc;
+SELECT 
+    s.city, 
+    SUM(e.fees) AS total_fees
+FROM 
+    students s
+JOIN 
+    enrollments e 
+    ON s.student_id = e.student_id
+GROUP BY 
+    s.city
+ORDER BY 
+    total_fees DESC;
+
